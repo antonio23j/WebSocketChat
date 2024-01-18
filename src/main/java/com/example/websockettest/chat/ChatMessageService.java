@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ChatMessageService {
 
-    private final ChatMessageRepository chatMessageRespository;
+    private final ChatMessageRepository chatMessageRepository;
     private final ChatRoomService chatRoomService;
 
     public ChatMessage save(ChatMessage chatMessage){
@@ -22,13 +22,13 @@ public class ChatMessageService {
                 true
         ).orElseThrow();
         chatMessage.setChatId(chatId);
-        chatMessageRespository.save(chatMessage);
+        chatMessageRepository.save(chatMessage);
         return chatMessage;
     }
 
     public List<ChatMessage> findChatMessages(String senderId, String recipientId){
         Optional<String> chatId = chatRoomService.getChatRoomId(senderId, recipientId, false);
-        return chatId.map(chatMessageRespository::findByChatId).orElse(new ArrayList<>());
+        return chatId.map(chatMessageRepository::findByChatId).orElse(new ArrayList<>());
 
     }
 
