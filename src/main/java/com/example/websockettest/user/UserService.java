@@ -9,7 +9,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepoistory repository;
+    private final UserRepository repository;
 
     public void saveUser(User user){
         user.setStatus(Status.ONLINE);

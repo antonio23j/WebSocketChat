@@ -16,11 +16,9 @@ public class ChatMessageService {
     private final ChatRoomService chatRoomService;
 
     public ChatMessage save(ChatMessage chatMessage){
-        String chatId = chatRoomService.getChatRoomId(
-                chatMessage.getSenderId(),
-                chatMessage.getRecipientId(),
-                true
-        ).orElseThrow();
+        String chatId = chatRoomService
+                .getChatRoomId(chatMessage.getSenderId(), chatMessage.getRecipientId(), true)
+                .orElseThrow();
         chatMessage.setChatId(chatId);
         chatMessageRepository.save(chatMessage);
         return chatMessage;
